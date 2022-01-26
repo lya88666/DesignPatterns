@@ -1,4 +1,5 @@
-﻿using DesignPatterns.State;
+﻿using DesignPatterns.Adapter;
+using DesignPatterns.State;
 using System;
 
 namespace DesignPatterns
@@ -7,11 +8,7 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            #region State
-
-            TestStatePattern();
-
-            #endregion
+            TestAdapterPattern();
         }
 
         private static void TestStatePattern()
@@ -41,6 +38,19 @@ namespace DesignPatterns
 
             work.Hour = 22;
             work.WriteProgram();
+        }
+
+        private static void TestAdapterPattern()
+        {
+            Player a = new Forward("A");
+            a.Attack();
+
+            Player b = new Guard("B");
+            b.Attack();
+
+            Player c = new Translator("C");
+            c.Attack();
+            c.Defend();
         }
     }
 }
