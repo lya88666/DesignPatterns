@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Adapter;
+using DesignPatterns.Composition;
 using DesignPatterns.State;
 using System;
 
@@ -8,7 +9,7 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            TestAdapterPattern();
+            TestComposition();
         }
 
         private static void TestStatePattern()
@@ -51,6 +52,21 @@ namespace DesignPatterns
             Player c = new Translator("C");
             c.Attack();
             c.Defend();
+        }
+
+        private static void TestComposition()
+        {
+            var root = new ConcreteCompany("Beijing headquarter");
+            root.Add(new HRDepartment("HR department"));
+            root.Add(new FinancialDepartment("Financial department"));
+
+            var shanghai = new ConcreteCompany("Shanghai office");
+            shanghai.Add(new HRDepartment("HR department"));
+            shanghai.Add(new FinancialDepartment("Financial department"));
+
+            root.Add(shanghai);
+
+            root.Display(1);
         }
     }
 }
